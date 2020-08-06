@@ -1,0 +1,14 @@
+{
+  "name": "livereaction-client",
+  "version": "0.0.0",
+  "dependencies": {
+    "emoji-images": "^0.1.1",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "file-loader": "^6.0.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
