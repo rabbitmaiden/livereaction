@@ -54,12 +54,14 @@ function findEmojiByName(name) {
 
 const animProps = {
   col: {max: 19, dupeLength: 10},
-  speed: {max: 8, dupeLength: 4}
+  speed: {max: 8, dupeLength: 4},
+  // animation: {max: 3, dupeLength: 1},
 };
 
 let lastProps = {
   col: [],
-  speed: []
+  speed: [],
+  // animation: [],
 };
 
 function rand(min, max) {
@@ -89,6 +91,17 @@ function animate(name, count) {
 
   let div = openDivs.shift();
 
+  let size = 1;
+  if ( count > 50 ) {
+    size = 4;
+  } else if (count > 25) {
+    size = 3;
+  } else if (count > 10) {
+    size = 2;
+  }
+  div.setAttribute("data-esize", size);
+  div.style.backgroundImage = "url(" + emoji.url + ")";
+
   for (let prop in animProps) {
     let value = 0;
     do {
@@ -102,20 +115,7 @@ function animate(name, count) {
 
     div.setAttribute("data-" + prop, value);
   }
-
-  let size = 1;
-  if ( count > 50 ) {
-    size = 4;
-  } else if (count > 25) {
-    size = 3;
-  } else if (count > 10) {
-    size = 2;
-  }
-  div.setAttribute("data-esize", size);
-  div.style.backgroundImage = "url(" + emoji.url + ")";
-
-  // start animation
-  div.setAttribute('data-animation', 1)
+  div.setAttribute("data-animation", "1");
 
   setTimeout(function(){
     div.removeAttribute("data-animation");

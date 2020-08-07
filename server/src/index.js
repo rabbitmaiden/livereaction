@@ -57,7 +57,6 @@ setInterval(() => {
     emojis: nextUpdate
   };
   io.emit('update', update);
-  console.log(update);
   nextUpdate = {};
 }, 200);
 

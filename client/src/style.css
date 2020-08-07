@@ -115,25 +115,29 @@ body.streaming #streaming-instructions {
 
 @keyframes wave1 {
   0% { transform: translateY(0); }
-  5% { transform: translateY(-100px) translateX(-10px); }
-  10% { transform: translateY(-200px) translateX(10px); }
-  15% { transform: translateY(-300px) translateX(-10px); }
-  20% { transform: translateY(-400px) translateX(10px); }
-  25% { transform: translateY(-500px) translateX(-10px); }
-  30% { transform: translateY(-600px) translateX(10px); }
-  35% { transform: translateY(-700px) translateX(-10px); }
-  40% { transform: translateY(-800px) translateX(10px); }
-  45% { transform: translateY(-900px) translateX(-10px); }
-  50% { transform: translateY(-1000px) translateX(10px); }
-  55% { transform: translateY(-1100px) translateX(-10px); }
-  60% { transform: translateY(-1200px) translateX(10px); }
-  65% { transform: translateY(-1300px) translateX(-10px); }
-  70% { transform: translateY(-1400px) translateX(10px); }
-  75% { transform: translateY(-1500px) translateX(-10px); }
-  80% { transform: translateY(-1600px) translateX(10px); }
-  85% { transform: translateY(-1700px) translateX(-10px); }
-  90% { transform: translateY(-1800px) translateX(10px); }
-  95% { transform: translateY(-1900px) translateX(-10px); }
+  10% { transform: translateY(-200px) translateX(30px); }
+  20% { transform: translateY(-400px) translateX(-30px); }
+  30% { transform: translateY(-600px) translateX(30px); }
+  40% { transform: translateY(-800px) translateX(-30px); }
+  50% { transform: translateY(-1000px) translateX(30px); }
+  60% { transform: translateY(-1200px) translateX(-30px); }
+  70% { transform: translateY(-1400px) translateX(30px); }
+  80% { transform: translateY(-1600px) translateX(-30px); }
+  90% { transform: translateY(-1800px) translateX(30px); }
+  100% { transform: translateY(-2000px); }
+}
+
+@keyframes wave2 {
+  0% { transform: translateY(0); }
+  10% { transform: translateY(-200px) translateX(50px); }
+  20% { transform: translateY(-400px) translateX(-50px); }
+  30% { transform: translateY(-600px) translateX(50px); }
+  40% { transform: translateY(-800px) translateX(-50px); }
+  50% { transform: translateY(-1000px) translateX(50px); }
+  60% { transform: translateY(-1200px) translateX(-50px); }
+  70% { transform: translateY(-1400px) translateX(50px); }
+  80% { transform: translateY(-1600px) translateX(-50px); }
+  90% { transform: translateY(-1800px) translateX(50px); }
   100% { transform: translateY(-2000px); }
 }
 
@@ -158,18 +162,6 @@ body.streaming #streaming-instructions {
 }
 
 .emoji[data-animation] {
-  animation-name: wave1;
-}
-
-.emoji[data-animation="2"] {
-  animation-name: floatup;
-}
-
-.emoji[data-animation="3"] {
-  animation-name: floatup;
-}
-
-.emoji[data-animation="4"] {
   animation-name: floatup;
 }
 
