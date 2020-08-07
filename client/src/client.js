@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const socket = io("http://127.0.0.1:3400");
+const socket = io("http://loverevolution21.com:3400");
 
 var statusTextEl = document.getElementById("connection-status");
 var userCountEl = document.getElementById("user-count");
@@ -68,7 +68,7 @@ function rand(min, max) {
   return Math.round(Math.random() * (max - min)) + min;
 }
 
-const POOL_SIZE = 100;
+const POOL_SIZE = 200;
 var openDivs = [];
 
 for (let i = 0; i < POOL_SIZE; i++) {
@@ -119,7 +119,9 @@ function animate(name, count) {
 
   setTimeout(function(){
     div.removeAttribute("data-animation");
-    openDivs.push(div);
+    setTimeout(function(){
+      openDivs.push(div);
+    }, 200);
   }, 7000);
 
 }
