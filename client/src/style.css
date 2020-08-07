@@ -1,6 +1,41 @@
 body {
-  background-color: #ff00ff;
+  background-color: white;
   font-family: Georgia, serif;
+  margin: 0px;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+body.streaming {
+  background-color: #00b140;
+}
+
+body.streaming .status,
+body.streaming .controls {
+  display: none;
+}
+
+#streaming-instructions {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 200px;
+  font-size: 96px;
+  text-align: center;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+}
+
+body.streaming #streaming-instructions {
+  animation-name: fadeout;
 }
 
 .status {
@@ -30,6 +65,12 @@ body {
   margin-bottom: 20px;
   cursor: pointer;
   opacity: 0.8;
+  position: relative;
+}
+
+.controls .button.disabled {
+  cursor: default;
+  pointer-events: none;
 }
 
 .controls .button:hover {
@@ -37,7 +78,223 @@ body {
   opacity: 1;
 }
 
-.controls #streaming-mode {
-  background: none;
+.controls .button .key {
+  visibility: hidden;
+  position: absolute;
+  width: 20px;
+  height: 20px;
   border: 1px solid black;
+  border-radius: 5px;
+  top: -10px;
+  right: -10px;
+  text-align: center;
+  background-color: white;
+  user-select: none;
+}
+
+.controls:hover .button .key {
+  visibility: visible;
+}
+
+.controls #streaming-mode {
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
+}
+
+@keyframes floatup {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes wave1 {
+  0% { transform: translateY(0); }
+  5% { transform: translateY(-100px) translateX(-10px); }
+  10% { transform: translateY(-200px) translateX(10px); }
+  15% { transform: translateY(-300px) translateX(-10px); }
+  20% { transform: translateY(-400px) translateX(10px); }
+  25% { transform: translateY(-500px) translateX(-10px); }
+  30% { transform: translateY(-600px) translateX(10px); }
+  35% { transform: translateY(-700px) translateX(-10px); }
+  40% { transform: translateY(-800px) translateX(10px); }
+  45% { transform: translateY(-900px) translateX(-10px); }
+  50% { transform: translateY(-1000px) translateX(10px); }
+  55% { transform: translateY(-1100px) translateX(-10px); }
+  60% { transform: translateY(-1200px) translateX(10px); }
+  65% { transform: translateY(-1300px) translateX(-10px); }
+  70% { transform: translateY(-1400px) translateX(10px); }
+  75% { transform: translateY(-1500px) translateX(-10px); }
+  80% { transform: translateY(-1600px) translateX(10px); }
+  85% { transform: translateY(-1700px) translateX(-10px); }
+  90% { transform: translateY(-1800px) translateX(10px); }
+  95% { transform: translateY(-1900px) translateX(-10px); }
+  100% { transform: translateY(-2000px); }
+}
+
+
+#emoji-pool {
+  width: calc(100% - 100px);
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+
+.emoji {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  background-position: center;
+  background-size: 64px;
+  background-repeat: no-repeat;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+  bottom: -180px;
+}
+
+.emoji[data-animation] {
+  animation-name: wave1;
+}
+
+.emoji[data-animation="2"] {
+  animation-name: floatup;
+}
+
+.emoji[data-animation="3"] {
+  animation-name: floatup;
+}
+
+.emoji[data-animation="4"] {
+  animation-name: floatup;
+}
+
+.emoji[data-col="1"] {
+  left: 5%;
+}
+
+.emoji[data-col="2"] {
+  left: 10%;
+}
+
+.emoji[data-col="3"] {
+  left: 15%;
+}
+
+.emoji[data-col="4"] {
+  left: 20%;
+}
+
+.emoji[data-col="5"] {
+  left: 25%;
+}
+
+.emoji[data-col="6"] {
+  left: 30%;
+}
+
+.emoji[data-col="7"] {
+  left: 35%;
+}
+
+.emoji[data-col="8"] {
+  left: 40%;
+}
+
+.emoji[data-col="9"] {
+  left: 45%;
+}
+
+.emoji[data-col="10"] {
+  left: 50%;
+}
+
+.emoji[data-col="11"] {
+  left: 55%;
+}
+
+.emoji[data-col="12"] {
+  left: 60%;
+}
+
+.emoji[data-col="13"] {
+  left: 65%;
+}
+
+.emoji[data-col="14"] {
+  left: 70%;
+}
+
+.emoji[data-col="15"] {
+  left: 75%;
+}
+
+.emoji[data-col="16"] {
+  left: 80%;
+}
+
+.emoji[data-col="17"] {
+  left: 85%;
+}
+
+.emoji[data-col="18"] {
+  left: 90%;
+}
+
+.emoji[data-col="19"] {
+  left: 95%;
+}
+
+.emoji[data-speed="1"] {
+  animation-duration: 3s;
+}
+
+.emoji[data-speed="2"] {
+  animation-duration: 3.5s;
+}
+
+.emoji[data-speed="3"] {
+  animation-duration: 4s;
+}
+
+.emoji[data-speed="4"] {
+  animation-duration: 4.5s;
+}
+
+.emoji[data-speed="5"] {
+  animation-duration: 5s;
+}
+
+.emoji[data-speed="6"] {
+  animation-duration: 5.5s;
+}
+
+.emoji[data-speed="7"] {
+  animation-duration: 6s;
+}
+
+.emoji[data-speed="8"] {
+  animation-duration: 6.5s;
+}
+
+.emoji[data-esize="2"] {
+  width: 100px;
+  height: 100px;
+  background-size: 96px;
+}
+
+.emoji[data-esize="3"] {
+  width: 128px;
+  height: 128px;
+  background-size: 128px;
+}
+
+.emoji[data-esize="4"] {
+  width: 160px;
+  height: 160px;
+  background-size: 160px;
 }
