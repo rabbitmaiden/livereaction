@@ -47,11 +47,15 @@ body.streaming #streaming-instructions {
 
 .controls {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  left: 0px;
+  bottom: 0px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .controls .button {
@@ -60,12 +64,18 @@ body.streaming #streaming-instructions {
   background-position: center;
   background-size: 64px;
   background-repeat: no-repeat;
+  background-color: white;
   border: 2px solid rgba(0,0,0,0.5);
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-right: 20px;
   cursor: pointer;
-  opacity: 0.8;
   position: relative;
+}
+
+.controls #emoji-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .controls .button.disabled {
@@ -75,7 +85,6 @@ body.streaming #streaming-instructions {
 
 .controls .button:hover {
   border-color: rgba(0,0,0,1);
-  opacity: 1;
 }
 
 .controls .button .key {
@@ -144,22 +153,22 @@ body.streaming #streaming-instructions {
 
 
 #emoji-pool {
-  width: calc(100% - 100px);
+  width: 100%;
   height: 100%;
   overflow: hidden;
   position: absolute;
 }
 
 .emoji {
-  width: 80px;
-  height: 80px;
+  width: 96px;
+  height: 96px;
   position: absolute;
   background-position: center;
-  background-size: 64px;
+  background-size: contain;
   background-repeat: no-repeat;
   animation-timing-function: ease-in;
   animation-delay: 0s;
-  bottom: -180px;
+  bottom: -300px;
 }
 
 .emoji[data-animation] {
@@ -275,19 +284,16 @@ body.streaming #streaming-instructions {
 }
 
 .emoji[data-esize="2"] {
-  width: 100px;
-  height: 100px;
-  background-size: 96px;
+  width: 140px;
+  height: 140px;
 }
 
 .emoji[data-esize="3"] {
-  width: 128px;
-  height: 128px;
-  background-size: 128px;
+  width: 200px;
+  height: 200px;
 }
 
 .emoji[data-esize="4"] {
-  width: 160px;
-  height: 160px;
-  background-size: 160px;
+  width: 250px;
+  height: 250px;
 }

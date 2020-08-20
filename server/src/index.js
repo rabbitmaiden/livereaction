@@ -1,20 +1,23 @@
+var emojis = require('../../shared/emojis');
 var app = require("express")();
 var http = require("http").createServer(app);
 var io = require('socket.io')(http);
 
 var userCount = 0;
 
-const validEmojis = [
-  "clap",
-  "heart",
-  "respects",
-  "airhorn",
-]
+function isValidEmoji(name) {
+  for (let i = 0; i < emojis.length; i++) {
+    if (emojis[i],name === name) {
+      return true;
+    }
+  }
+  return false;
+}
 
 var nextUpdate = {};
 
 function requestBulkEmoji(name, count) {
-  if (validEmojis.indexOf(name) < 0) {
+  if (!isValidEmoji(name)) {
     return false;
   }
   if (!nextUpdate[name]) {
@@ -37,7 +40,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('emoji-request', (name) => {
-    if (validEmojis.indexOf(name) < 0) {
+    if (!isValidEmoji(name)) {
       return false;
     }
     io.emit('emoji', name);

@@ -1,18 +1,13 @@
+const emojis = require("../../shared/emojis");
 const io = require('socket.io-client');
-const socket = io("http://loverevolution21.com:3400");
+const socket = io("http://localhost:3400");
+//const socket = io("http://loverevolution21.com:3400");
 
 var statusTextEl = document.getElementById("connection-status");
 var userCountEl = document.getElementById("user-count");
 var buttonsContainerEl = document.getElementById("emoji-buttons");
 var emojiPoolEl = document.getElementById("emoji-pool");
 var streamingModeEl = document.getElementById("streaming-mode");
-
-const emojis = [];
-emojis.push({name: "clap", url: require("emoji-images/pngs/clap.png").default, key: "C", keyCode: 67});
-emojis.push({name: "heart", url: require("emoji-images/pngs/sparkling_heart.png").default, key: "H", keyCode: 72});
-emojis.push({name: "respects", url: require("./images/f_key.png").default, key: "F", keyCode: 70});
-emojis.push({name: "airhorn", url: require("./images/airhorn.png").default, key: "A", keyCode: 65});
-
 var lastId = -1;
 
 socket.on("connect", () => {
@@ -52,6 +47,10 @@ function findEmojiByName(name) {
   return null;
 }
 
+function getEmojiUrl(name) {
+  return "images/" + name + ".png";
+}
+
 const animProps = {
   col: {max: 19, dupeLength: 10},
   speed: {max: 8, dupeLength: 4},
@@ -64,13 +63,20 @@ let lastProps = {
   // animation: [],
 };
 
+const sizeCounts = [
+  0,
+  3,
+  6,
+  10
+]
+
 function rand(min, max) {
   return Math.round(Math.random() * (max - min)) + min;
 }
 
+// Create pool of reusable emoji elements
 const POOL_SIZE = 200;
 var openDivs = [];
-
 for (let i = 0; i < POOL_SIZE; i++) {
   let div = document.createElement("DIV");
   div.classList.add("emoji");
@@ -92,15 +98,15 @@ function animate(name, count) {
   let div = openDivs.shift();
 
   let size = 1;
-  if ( count > 50 ) {
+  if ( count > sizeCounts[3] ) {
     size = 4;
-  } else if (count > 25) {
+  } else if (count > sizeCounts[2]) {
     size = 3;
-  } else if (count > 10) {
+  } else if (count > sizeCounts[1]) {
     size = 2;
   }
   div.setAttribute("data-esize", size);
-  div.style.backgroundImage = "url(" + emoji.url + ")";
+  div.style.backgroundImage = "url(" + getEmojiUrl(emoji.name) + ")";
 
   for (let prop in animProps) {
     let value = 0;
@@ -150,7 +156,7 @@ function requestEmoji(name, buttonEl) {
 function createButton(emoji) {
   var buttonEl = document.createElement("DIV");
   buttonEl.classList.add("button");
-  buttonEl.style.backgroundImage = "url(" + emoji.url + ")";
+  buttonEl.style.backgroundImage = "url(" + getEmojiUrl(emoji.name) + ")";
   buttonEl.addEventListener("mousedown", () => {
     requestEmoji(emoji.name);
     if (DISABLE_SPAM) {
@@ -178,11 +184,18 @@ if (USE_BULK) {
       nextEmit = null;
     }
   }, 200);
+}
+
+
+let sortedEmojis = emojis; /*emojis.sort(function(a,b){
+  if (a.keyCode === b.keyCode) {
+    return 0;
   }
+  return (a.keyCode < b.keyCode) ? -1 : 1;
+});*/
 
-
-for (var i = 0; i < emojis.length; i++) {
-  createButton(emojis[i]);
+for (var i = 0; i < sortedEmojis.length; i++) {
+  createButton(sortedEmojis[i]);
 }
 
 streamingModeEl.addEventListener("click", function(){
@@ -190,7 +203,8 @@ streamingModeEl.addEventListener("click", function(){
 });
 
 document.body.addEventListener("keydown", function(e){
-  if (e.keyCode == 81) {
+  console.log("KEYCODE:", e.keyCode);
+  if (e.keyCode == 115) {
     document.body.classList.remove("streaming");
   } else if (keyCodeToNameMap[e.keyCode]) {
     requestEmoji(keyCodeToNameMap[e.keyCode]);
