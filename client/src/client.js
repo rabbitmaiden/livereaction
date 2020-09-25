@@ -1,7 +1,7 @@
 const emojis = require("../../shared/emojis");
 const io = require('socket.io-client');
-const socket = io("http://localhost:3400");
-//const socket = io("http://loverevolution21.com:3400");
+//const socket = io("http://localhost:3400");
+const socket = io("http://loverevolution21.com:3400");
 
 var statusTextEl = document.getElementById("connection-status");
 var userCountEl = document.getElementById("user-count");

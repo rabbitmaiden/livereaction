@@ -2,6 +2,7 @@ body {
   background-color: white;
   font-family: Georgia, serif;
   margin: 0px;
+  overflow: hidden;
 }
 
 @keyframes fadeout {

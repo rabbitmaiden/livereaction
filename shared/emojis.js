@@ -36,7 +36,12 @@ module.exports = [
   },
   {
     name: "pjsalt",
-    key: "v",
+    key: "V",
     keyCode: 86
+  },
+  {
+    name: "choncc",
+    key: "Q",
+    keyCode: 81
   },
 ];
